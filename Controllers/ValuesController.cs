@@ -14,7 +14,7 @@ namespace backend_website.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
-            return new string[] { "value 1", "value 2", "v 3" };
+            return new string[] { "value 1", "value 2" };
         }
 
         // GET api/values/5
