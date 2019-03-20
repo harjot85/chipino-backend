@@ -6,15 +6,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace backend_website.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("/")]
     [ApiController]
     public class ValuesController : ControllerBase
     {
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return "Chipino meshworks API!";
         }
 
         // GET api/values/5
