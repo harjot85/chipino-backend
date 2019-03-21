@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Test.Services;
+using Test.Models;
 
 namespace backend_website.Controllers
 {
@@ -10,11 +12,18 @@ namespace backend_website.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly TestService _testService;
+
+        public ValuesController(TestService testService)
+        {
+            _testService = testService;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<string> Get()
+        public ActionResult<TestMongoConnection> Get()
         {
-            return "Chipino meshworks API!!";
+            return _testService.Get();
         }
 
         // GET api/values/5
