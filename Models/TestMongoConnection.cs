@@ -9,10 +9,13 @@ namespace Test.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id {get; set;}
 
-        [BsonElement("Name")]
-        public string Name {get; set;}
+        [BsonElement("ItemOne")]
+        public string ItemOne {get; set;}
 
-        [BsonElement("Age")]
-        public string Age { get; set; }
+        [BsonElement("ItemTwo")]
+        public string ItemTwo { get; set; }
+
+        [BsonElement("ItemThree")]
+        public string ItemThree { get; set; }
     }
 }

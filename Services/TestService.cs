@@ -9,8 +9,8 @@ namespace Test.Services
         public TestService(IConfiguration config)
         {
             var client = new MongoClient(config.GetConnectionString("MongoDb"));
-            var database = client.GetDatabase("heroku_b8j01p9m");
-            _test = database.GetCollection<TestMongoConnection>("Test");
+            var database = client.GetDatabase(config.GetConnectionString("Database"));
+            _test = database.GetCollection<TestMongoConnection>("ChipinoTextContent");
         }
         private readonly IMongoCollection<TestMongoConnection> _test;
         public TestMongoConnection Get()
