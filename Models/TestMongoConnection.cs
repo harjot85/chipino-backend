@@ -9,13 +9,13 @@ namespace Test.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public string Id {get; set;}
 
-        [BsonElement("ItemOne")]
-        public string ItemOne {get; set;}
+        [BsonElement("SocialMedia")]
+        public string SocialMedia {get; set;}
 
-        [BsonElement("ItemTwo")]
-        public string ItemTwo { get; set; }
+        [BsonElement("IconClass")]
+        public string Icon { get; set; }
 
-        [BsonElement("ItemThree")]
-        public string ItemThree { get; set; }
+        [BsonElement("Link")]
+        public string Link { get; set; }
     }
 }

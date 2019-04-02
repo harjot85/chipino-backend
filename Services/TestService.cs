@@ -10,12 +10,12 @@ namespace Test.Services
         {
             var client = new MongoClient(config.GetConnectionString("MongoDb"));
             var database = client.GetDatabase(config.GetConnectionString("Database"));
-            _test = database.GetCollection<TestMongoConnection>("ChipinoTextContent");
+            _test = database.GetCollection<TestMongoConnection>("ChipinoShared");
         }
         private readonly IMongoCollection<TestMongoConnection> _test;
         public TestMongoConnection Get()
         {
-            return _test.Find<TestMongoConnection>(person => true).FirstOrDefault();
+            return _test.Find<TestMongoConnection>(record => true).FirstOrDefault();
         }
     }
 }
