@@ -27,6 +27,7 @@ namespace backend_website
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<TestService>();
+            services.AddCors();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -43,6 +44,9 @@ namespace backend_website
             }
 
             app.UseHttpsRedirection();
+            app.UseCors(
+                options => options.WithOrigins("*").AllowAnyMethod()
+            );
             app.UseMvc();
         }
     }
