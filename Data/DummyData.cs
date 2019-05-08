@@ -2,22 +2,21 @@
 using backend_website.Properties;
 using System;
 using System.Collections.Generic;
-using MongoDB.Driver;
 
 namespace backend_website.Data
 {
     public class DummyData
     {
-        public static IEnumerable<Content> TextContent { get; set; }
-        public static IEnumerable<Media> MediaContent { get; set; }
+        public IEnumerable<Content> TextContent { get; set; }
+        public IEnumerable<Media> MediaContent { get; set; }
 
-        public static void Initialize()
+        public DummyData()
         {
             TextContent = GetTextContent();
             MediaContent = GetMediaContent();
         }
 
-        private static List<Content> GetTextContent()
+        private List<Content> GetTextContent()
         {
             var textContent = new List<Content>()
             {
@@ -31,7 +30,7 @@ namespace backend_website.Data
             return textContent;
         }
 
-        private static List<Media> GetMediaContent()
+        private List<Media> GetMediaContent()
         {
             byte[] picOne = Resource._1;
             byte[] picTwo = Resource._2;

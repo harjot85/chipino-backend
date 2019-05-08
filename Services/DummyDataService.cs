@@ -9,34 +9,32 @@ namespace backend_website.Services
 {
     public class DummyDataService
     {
-        private readonly IEnumerable<Content> _localTextContent;
-        private readonly IEnumerable<Media> _localMediaContent;
+        private readonly DummyData _ctx;
+        
 
         public DummyDataService()
         {
-            DummyData.Initialize();
-            _localTextContent = DummyData.TextContent;
-            _localMediaContent = DummyData.MediaContent;
+            _ctx = new DummyData();
         }
 
         public IEnumerable<Content> GetAllTextContent()
         {
-            return _localTextContent;
+            return _ctx.TextContent;
         }
 
         public Content GetTextContentById(int id)
         {
-            return (_localTextContent.Where(c=> c.Id == id)).FirstOrDefault();
+            return _ctx.TextContent.Where(c => c.Id == id).FirstOrDefault();
         }
 
         public IEnumerable<Media> GetAllMediaContent()
         {
-            return _localMediaContent;
+            return _ctx.MediaContent;
         }
 
         public Media GetMediaContentById(int id)
         {
-            return (_localMediaContent.Where(m => m.Id == id)).FirstOrDefault();
+            return _ctx.MediaContent.Where(m=>m.Id==id).FirstOrDefault();
         }
 
     }
