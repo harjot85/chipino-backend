@@ -6,22 +6,21 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace backend_website.Controllers
 {
-    [Route("/")]
+    [Route("/api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ValuesController : Controller
     {
-        // GET api/values
         [HttpGet]
-        public ActionResult<string> Get()
+        public IActionResult Get()
         {
-            return "Chipino meshworks API!!";
+            return Ok("Chipino meshworks API!!");
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            return Ok($"The value passed in url is {id}");
         }
 
         // POST api/values
