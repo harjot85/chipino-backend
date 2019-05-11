@@ -9,11 +9,13 @@ namespace backend_website.Data
     {
         public IEnumerable<Content> TextContent { get; set; }
         public IEnumerable<Media> MediaContent { get; set; }
+        public IEnumerable<Footer> FooterContent { get; set; }
 
         public DummyData()
         {
             TextContent = GetTextContent();
             MediaContent = GetMediaContent();
+            FooterContent = GetFooterContent();
         }
 
         private List<Content> GetTextContent()
@@ -41,6 +43,17 @@ namespace backend_website.Data
                 new Media(){ Id=11, MediaContent=Convert.ToBase64String(picTwo) , Description="This is Picture Two wiht undelying text."  },
             };
             return mediaContent;
+        }
+
+        private List<Footer> GetFooterContent()
+        {
+            var footerContent = new List<Footer>()
+            {
+                new Footer(){ Id=501, IconClass="fab fa-github", Height="36px",Width="36px", LinkTo="github.com", HoverColor="#289CCB"  },
+                new Footer(){ Id=502, IconClass="fab fa-medium-m", Height="36px",Width="36px", LinkTo="medium.com", HoverColor="#A9EAD2"  },
+                new Footer(){ Id=503, IconClass="fab fa-reddit-alien", Height="36px",Width="36px", LinkTo="reddit.com", HoverColor="#FF8B94"  },
+            };
+            return footerContent;
         }
     }
 }
