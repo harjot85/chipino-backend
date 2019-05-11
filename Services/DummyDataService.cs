@@ -37,5 +37,9 @@ namespace backend_website.Services
             return _ctx.MediaContent.Where(m=>m.Id==id).FirstOrDefault();
         }
 
+        public IEnumerable<Footer> GetFooterContent()
+        {
+            return _ctx.FooterContent;
+        }
     }
 }

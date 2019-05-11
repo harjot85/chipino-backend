@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace backend_website.Models
+﻿namespace backend_website.Models
 {
     public class Footer
     {
         public int Id { get; set; }
-        public string SocialMediaUrl { get; set; }
-        public string Name { get; set; }
-        public string DisplayName { get; set; }
+        public string IconClass { get; set; }
+        public string Height { get; set; }
+        public string Width { get; set; }
+        public string LinkTo { get; set; }
+        public string HoverColor { get; set; }
     }
 }
