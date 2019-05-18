@@ -43,6 +43,7 @@ namespace backend_website
             }
 
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

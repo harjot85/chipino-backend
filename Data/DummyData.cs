@@ -1,7 +1,7 @@
 ﻿using backend_website.Models;
-using backend_website.Properties;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace backend_website.Data
 {
@@ -34,13 +34,13 @@ namespace backend_website.Data
 
         private List<Media> GetMediaContent()
         {
-            byte[] picOne = Resource._1;
-            byte[] picTwo = Resource._2;
+            byte[] imgOne = File.ReadAllBytes("./wwwroot/Images/1.png");
+            byte[] imgTwo = File.ReadAllBytes("./wwwroot/Images/1.png");
 
             var mediaContent = new List<Media>()
             {
-                new Media(){ Id=10, MediaContent=Convert.ToBase64String(picOne) , Description="This is Picture One wiht NO undelying text."  },
-                new Media(){ Id=11, MediaContent=Convert.ToBase64String(picTwo) , Description="This is Picture Two wiht undelying text."  },
+                new Media(){ Id=10, MediaContent=Convert.ToBase64String(imgOne) , Description="This is Picture One wiht NO undelying text."  },
+                new Media(){ Id=11, MediaContent=Convert.ToBase64String(imgTwo) , Description="This is Picture Two wiht undelying text."  },
             };
             return mediaContent;
         }
