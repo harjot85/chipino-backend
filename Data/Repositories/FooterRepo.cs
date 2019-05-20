@@ -8,9 +8,14 @@ namespace backend_website.Data.Repositories
 {
     public class FooterRepo : IFooterRepo
     {
+        private readonly DummyData _ctx;
+        public FooterRepo()
+        {
+            _ctx = new DummyData();
+        }
         public Footer GetFooter()
         {
-            throw new NotImplementedException();
+            return _ctx.GetFooterContent().FirstOrDefault();
         }
     }
 }

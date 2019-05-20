@@ -13,25 +13,26 @@ namespace backend_website.Controllers
     [ApiController]
     public class ContentController : Controller
     {
-        private readonly DummyDataService _localService;
-               
-        public ContentController(DummyDataService service)
-        {
+        private readonly DummyService _localService;
+        private readonly MongoDbService _service;
 
-            _localService = service;
+        public ContentController(MongoDbService service)
+        {
+            //_localService = service;
+            _service = service;
         }
 
         [HttpGet]
         public IActionResult GetAllContent()
         {
-            return Ok(_localService.GetAllTextContent());
+            return Ok(_service.GetAllTextContent());
         }
 
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetTextContentById(int id)
         {
-            return Ok(_localService.GetTextContentById(id));
+            return Ok(_service.GetTextContentById(id));
         }
     }
 }

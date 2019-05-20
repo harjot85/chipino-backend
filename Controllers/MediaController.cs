@@ -14,23 +14,24 @@ namespace backend_website.Controllers
     [ApiController]
     public class MediaController : Controller
     {
-        private readonly DummyDataService _localService;
-        public MediaController(DummyDataService service)
+        //private readonly DummyDataService _service;
+        private readonly MongoDbService _service;
+
+        public MediaController(MongoDbService service)
         {
-            _localService = service;
+            _service = service;
         }
 
         [HttpGet]
         public IActionResult GetAllMedia()
         {
-            return Ok(_localService.GetAllMediaContent());
+            return Ok(_service.GetAllMediaContent());
         }
 
-        [HttpGet]
-        [Route("{Id}")]
+        [HttpGet("id")]
         public IActionResult GetImageById(int id)
         {
-            return Ok(_localService.GetMediaContentById(id));
+            return Ok(_service.GetMediaContentById(id));
         }
     }
 }
