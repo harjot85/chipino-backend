@@ -29,6 +29,11 @@ namespace backend_website
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTransient<MongoDbService>();//try using IService as both services are implementing this interface;
+            services.AddCors(options => {
+                options.AddPolicy("ChipinoOriginPolicy",
+                    builder => builder.WithOrigins($"{ Configuration["chipinoClientUrl"] }")
+                                              .WithMethods("GET"));
+            });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -38,16 +43,15 @@ namespace backend_website
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
-            }
-            else if (env.IsProduction())
-            {
-                //read from key/valut conn string;
             }
             else
             {
                 app.UseHsts();  
             }
+
+            app.UseCors(builder => {
+                builder.WithOrigins(Configuration["chipinoClientUrl"]);
+            });
 
             ConnectionString = Configuration["ConnectionStrings:MongoDbConnection"];
             app.UseHttpsRedirection();

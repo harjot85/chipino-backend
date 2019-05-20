@@ -1,9 +1,11 @@
 ﻿using backend_website.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend_website.Controllers
 {
     [Route("/api/[controller]")]
+    [EnableCors("ChipinoOriginPolicy")]
     [ApiController]
     public class FooterController : Controller
     {
