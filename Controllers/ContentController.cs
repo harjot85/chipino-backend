@@ -5,11 +5,13 @@ using System.Threading.Tasks;
 using backend_website.Data;
 using backend_website.Models;
 using backend_website.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend_website.Controllers
 {
     [Route("/api/[controller]")]
+    [EnableCors("ChipinoOriginPolicy")]
     [ApiController]
     public class ContentController : Controller
     {
