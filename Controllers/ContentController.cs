@@ -22,8 +22,7 @@ namespace backend_website.Controllers
             return Ok(_service.GetAllTextContent());
         }
 
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public IActionResult GetTextContentById(int id)
         {
             return Ok(_service.GetTextContentById(id));

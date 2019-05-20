@@ -22,7 +22,7 @@ namespace backend_website.Controllers
             return Ok(_service.GetAllMediaContent());
         }
 
-        [HttpGet("id")]
+        [HttpGet("{id}")]
         public IActionResult GetImageById(int id)
         {
             return Ok(_service.GetMediaContentById(id));
