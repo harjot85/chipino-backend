@@ -31,8 +31,7 @@ namespace backend_website
             services.AddTransient<MongoDbService>();//try using IService as both services are implementing this interface;
             services.AddCors(options => {
                 options.AddPolicy("ChipinoOriginPolicy",
-                    builder => builder.WithOrigins($"{ Configuration["chipinoClientUrl"] }")
-                                              .WithMethods("GET"));
+                    builder => builder.AllowAnyOrigin().WithMethods("GET"));
             });
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
