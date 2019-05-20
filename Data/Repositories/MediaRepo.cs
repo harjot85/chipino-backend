@@ -15,12 +15,12 @@ namespace backend_website.Data.Repositories
 
         public IEnumerable<Media> GetAllMedia()
         {
-            return _ctx.MediaContent;
+            return _ctx.GetMediaContent();
         }
 
         public Media GetImageById(int id)
         {
-            return _ctx.MediaContent.Where(m => m.Id == id).FirstOrDefault();
+            return _ctx.GetMediaContent().Where(m => m.Id == id).FirstOrDefault();
         }
     }
 }

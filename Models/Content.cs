@@ -8,7 +8,7 @@ namespace backend_website.Models
     public class Content
     {
         public int Id { get; set; }
-        public string ContentText { get; set; }
+        public string TextContent { get; set; }
         public string Description { get; set; }
     }
 }
