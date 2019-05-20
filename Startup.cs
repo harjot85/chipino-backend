@@ -23,10 +23,12 @@ namespace backend_website
 
         public IConfiguration Configuration { get; }
 
+        public static string ConnectionString { get; private set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<DummyDataService>();
+            services.AddTransient<MongoDbService>();//try using IService as both services are implementing this interface;
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -36,12 +38,18 @@ namespace backend_website
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+
+            }
+            else if (env.IsProduction())
+            {
+                //read from key/valut conn string;
             }
             else
             {
-                app.UseHsts();
+                app.UseHsts();  
             }
 
+            ConnectionString = Configuration["ConnectionStrings:MongoDbConnection"];
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseMvc();

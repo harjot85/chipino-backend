@@ -1,19 +1,22 @@
-﻿using backend_website.Data;
-using backend_website.Models;
+﻿using backend_website.Data.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using MongoDB.Driver;
+using backend_website.Data;
+using backend_website.Models;
+
 namespace backend_website.Services
 {
-    public class DummyService : IService
+    public class MongoDbService : IService
     {
         private readonly IRepositoryData _ctx;
-        
-        public DummyService()
+
+        public MongoDbService()
         {
-            _ctx = new DummyData();
+            _ctx = new MongoDbData("chipinoDB");
         }
 
         public IEnumerable<Content> GetAllTextContent()
@@ -33,12 +36,13 @@ namespace backend_website.Services
 
         public Media GetMediaContentById(int id)
         {
-            return _ctx.GetMediaContent().Where(m=>m.Id==id).FirstOrDefault();
+            return _ctx.GetMediaContent().Where(m => m.Id == id).FirstOrDefault();
         }
 
         public IEnumerable<Footer> GetFooterContent()
         {
             return _ctx.GetFooterContent();
         }
+
     }
 }

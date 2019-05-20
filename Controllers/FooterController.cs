@@ -7,16 +7,17 @@ namespace backend_website.Controllers
     [ApiController]
     public class FooterController : Controller
     {
-        private readonly DummyDataService _localService;
+        //private readonly DummyDataService _localService;
+        private readonly MongoDbService _service;
 
-        public FooterController(DummyDataService service)
+        public FooterController(MongoDbService service)
         {
-            _localService = service;
+            _service = service;
         }
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok(_localService.GetFooterContent());
+            return Ok(_service.GetFooterContent());
         }
     }
 }

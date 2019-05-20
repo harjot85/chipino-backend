@@ -5,47 +5,36 @@ using System.IO;
 
 namespace backend_website.Data
 {
-    public class DummyData
+    public class DummyData : IRepositoryData
     {
-        public IEnumerable<Content> TextContent { get; set; }
-        public IEnumerable<Media> MediaContent { get; set; }
-        public IEnumerable<Footer> FooterContent { get; set; }
-
-        public DummyData()
-        {
-            TextContent = GetTextContent();
-            MediaContent = GetMediaContent();
-            FooterContent = GetFooterContent();
-        }
-
-        private List<Content> GetTextContent()
+        public IEnumerable<Content> GetTextContent()
         {
             var textContent = new List<Content>()
             {
-                new Content(){ Id=0,ContentText="Home Page Text", Description="This test is located on Home Page."},
-                new Content(){ Id=1,ContentText="Portfolio Page Text", Description="This text is location on Portfolio Page."},
-                new Content(){ Id=2,ContentText="Contact Us Page Text", Description="This text is located on Contact Us page."},
-                new Content(){ Id=3,ContentText="About Chipino Page Text", Description="This text in on About Chipino page."},
-                new Content(){ Id=4,ContentText="Support text Text", Description="This text is locaged here and tere."},
-                new Content(){ Id=5,ContentText="Some other text on a Page", Description="This text will be on some other part of the page."},
+                new Content(){ Id=0,TextContent="Home Page Text", Description="This test is located on Home Page."},
+                new Content(){ Id=1,TextContent="Portfolio Page Text", Description="This text is location on Portfolio Page."},
+                new Content(){ Id=2,TextContent="Contact Us Page Text", Description="This text is located on Contact Us page."},
+                new Content(){ Id=3,TextContent="About Chipino Page Text", Description="This text in on About Chipino page."},
+                new Content(){ Id=4,TextContent="Support text Text", Description="This text is locaged here and tere."},
+                new Content(){ Id=5,TextContent="Some other text on a Page", Description="This text will be on some other part of the page."},
             };
             return textContent;
         }
 
-        private List<Media> GetMediaContent()
+        public IEnumerable<Media> GetMediaContent()
         {
             byte[] imgOne = File.ReadAllBytes("./wwwroot/Images/1.png");
-            byte[] imgTwo = File.ReadAllBytes("./wwwroot/Images/1.png");
+            byte[] imgTwo = File.ReadAllBytes("./wwwroot/Images/2.png");
 
             var mediaContent = new List<Media>()
             {
-                new Media(){ Id=10, MediaContent=Convert.ToBase64String(imgOne) , Description="This is Picture One wiht NO undelying text."  },
-                new Media(){ Id=11, MediaContent=Convert.ToBase64String(imgTwo) , Description="This is Picture Two wiht undelying text."  },
+                new Media(){ Id=10, MediaContent=Convert.ToBase64String(imgOne) , Description="This is Picture One with NO undelying text."  },
+                new Media(){ Id=11, MediaContent=Convert.ToBase64String(imgTwo) , Description="This is Picture Two with undelying text."  },
             };
             return mediaContent;
         }
 
-        private List<Footer> GetFooterContent()
+        public IEnumerable<Footer> GetFooterContent()
         {
             var footerContent = new List<Footer>()
             {
