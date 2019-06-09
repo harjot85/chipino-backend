@@ -8,5 +8,6 @@ namespace backend_website.Data
         IEnumerable<Content> GetTextContent();
         IEnumerable<Media> GetMediaContent();
         IEnumerable<Footer> GetFooterContent();
+        IEnumerable<Carousel> GetCarouselContent();
     }
 }

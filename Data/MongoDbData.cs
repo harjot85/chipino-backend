@@ -36,5 +36,11 @@ namespace backend_website.Data
             var coll = _db.GetCollection<Footer>("ChipinoFooter");
             return coll.Find(new BsonDocument()).ToList();
         }
+
+        public IEnumerable<Carousel> GetCarouselContent()
+        {
+            var coll = _db.GetCollection<Carousel>("ChipinoCarousel");
+            return coll.Find(new BsonDocument()).ToList();
+        }
     }
 }

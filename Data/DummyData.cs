@@ -44,5 +44,17 @@ namespace backend_website.Data
             };
             return footerContent;
         }
+
+        public IEnumerable<Carousel> GetCarouselContent()
+        {
+            byte[] imgTwo = File.ReadAllBytes("./wwwroot/Images/2.png");
+
+            var carouselContent = new List<Carousel>()
+            {
+                new Carousel(){ Id=801, Image="", Heading="Dummy Heading", Description= "Dummy description", HeadingTextColor="yellow", DescTextColor="blue" },
+            };
+            return carouselContent;
+
+        }
     }
 }
