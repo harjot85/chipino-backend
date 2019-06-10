@@ -13,5 +13,6 @@ namespace backend_website.Services
         IEnumerable<Media> GetAllMediaContent();
         Media GetMediaContentById(int id);
         IEnumerable<Footer> GetFooterContent();
+        IEnumerable<Carousel> GetCarouselContent();
     }
 }

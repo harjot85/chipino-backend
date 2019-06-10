@@ -43,6 +43,10 @@ namespace backend_website.Services
         {
             return _ctx.GetFooterContent();
         }
+        public IEnumerable<Carousel> GetCarouselContent()
+        {
+            return _ctx.GetCarouselContent();
+        }
 
     }
 }
