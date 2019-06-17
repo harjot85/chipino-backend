@@ -51,7 +51,7 @@ namespace backend_website.Data
 
             var carouselContent = new List<Carousel>()
             {
-                new Carousel(){ Id=801, Image="", Heading="Dummy Heading", Description= "Dummy description", HeadingTextColor="yellow", DescTextColor="blue" },
+                new Carousel(){ Id=801, Image=Convert.ToBase64String(imgTwo), Heading="Dummy Heading", Description= "Dummy description", HeadingTextColor="yellow", DescTextColor="blue" },
             };
             return carouselContent;
 
