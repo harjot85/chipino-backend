@@ -2,43 +2,48 @@
 using backend_website.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace backend_website.Controllers
 {
     [Route("/api/[controller]")]
     [EnableCors("ChipinoOriginPolicy")]
     [ApiController]
-    public class UpdateGitRepoCollectionController : Controller
+    public class GitRepoController : Controller
     {
         private readonly MongoDbService _service;
 
         private const string Added = "created";
         private const string Removed = "deleted";
 
-        public UpdateGitRepoCollectionController(MongoDbService service)
+        public GitRepoController(MongoDbService service)
         {
             _service = service;
         }
 
         [HttpPost]
-        public IActionResult UpdateGitRepoCollection([FromBody] dynamic repository)
+        [Route("add")]
+        public async Task<IActionResult> AddGitRepo([FromBody] dynamic repository)
         {
-            string result = string.Empty;
-            var repo = new GitHubRepository
+            var newRepo = new GitHubRepository
             {
-                Action = repository.action,
                 Id = repository.repository.id,
                 Name = repository.repository.name,
                 Description = repository.repository.description
             };
+            bool result = await _service.AddGitRepository(newRepo);
+            return Ok(result);
+        }
 
-            if (!string.IsNullOrEmpty(repo.Action))
+        [HttpPost]
+        [Route("remove")]
+        public async Task<IActionResult> RemoveGitRepo([FromBody] dynamic repository)
+        {
+            var removeRepo = new GitHubRepository
             {
-                if (repo.Action == Added)
-                { }
-                if (repo.Action == Removed)
-                { }
-            }
+                Id = repository.repository.id
+            };
+            bool result = await _service.RemoveGitRepository(removeRepo.Id);
             return Ok(result);
         }
     }

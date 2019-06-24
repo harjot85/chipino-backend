@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using MongoDB.Driver;
 using backend_website.Data;
 using backend_website.Models;
@@ -43,10 +42,20 @@ namespace backend_website.Services
         {
             return _ctx.GetFooterContent();
         }
+
         public IEnumerable<Carousel> GetCarouselContent()
         {
             return _ctx.GetCarouselContent();
         }
 
+        public Task<bool> AddGitRepository(Models.GitHubRepository repository)
+        {
+            return _ctx.AddRepository(repository);
+        }
+
+        public Task<bool> RemoveGitRepository(int repositoryId)
+        {
+            return _ctx.RemoveRepository(repositoryId);
+        }
     }
 }
