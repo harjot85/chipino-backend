@@ -2,11 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace backend_website.Data
 {
     public class DummyData : IRepositoryData
     {
+        
         public IEnumerable<Content> GetTextContent()
         {
             var textContent = new List<Content>()
@@ -51,10 +53,20 @@ namespace backend_website.Data
 
             var carouselContent = new List<Carousel>()
             {
-                new Carousel(){ Id=801, Image="", Heading="Dummy Heading", Description= "Dummy description", HeadingTextColor="yellow", DescTextColor="blue" },
+                new Carousel(){ Id=801, Image=Convert.ToBase64String(imgTwo), Heading="Dummy Heading", Description= "Dummy description", HeadingTextColor="yellow", DescTextColor="blue" },
             };
             return carouselContent;
 
+        }
+
+        public Task<bool> AddRepository(Models.GitHubRepository repository)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> RemoveRepository(int repositoryId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

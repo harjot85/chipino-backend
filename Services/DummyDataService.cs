@@ -45,5 +45,15 @@ namespace backend_website.Services
         {
             return _ctx.GetCarouselContent();
         }
+
+        public Task<bool> AddGitRepository(Models.GitHubRepository repository)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> RemoveGitRepository(int repositoryId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

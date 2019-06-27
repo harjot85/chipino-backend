@@ -42,5 +42,39 @@ namespace backend_website.Data
             var coll = _db.GetCollection<Carousel>("ChipinoCarousel");
             return coll.Find(new BsonDocument()).ToList();
         }
+
+        public async Task<bool> AddRepository(Models.GitHubRepository repository)
+        {
+            bool result = false;
+            var newRepo = _db.GetCollection<Models.GitHubRepository>("ChipinoGitRepos");
+            try
+            {
+                await newRepo.InsertOneAsync(repository);
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+
+            return result;
+        }
+
+        public async Task<bool> RemoveRepository(int repositoryId)
+        {
+            bool isRemoved = false;
+            var repo = _db.GetCollection<Models.GitHubRepository>("ChipinoGitRepos");
+            try
+            {
+                var response = await repo.DeleteOneAsync(Builders<Models.GitHubRepository>.Filter.Eq("_id", repositoryId));
+                isRemoved = response.IsAcknowledged;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(ex.Message);
+            }
+
+            return isRemoved;
+        }
     }
 }
