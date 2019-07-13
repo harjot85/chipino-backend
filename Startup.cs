@@ -23,11 +23,17 @@ namespace backend_website
 
         public IConfiguration Configuration { get; }
 
+        public static string ConnectionString { get; private set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<DummyDataService>();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<MongoDbService>();//try using IService as both services are implementing this interface;
+            services.AddCors(options => {
+                options.AddPolicy("ChipinoOriginPolicy",
+                    builder => builder.AllowAnyOrigin().WithMethods("GET"));
+            });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,10 +45,16 @@ namespace backend_website
             }
             else
             {
-                app.UseHsts();
+                app.UseHsts();  
             }
 
+            app.UseCors(builder => {
+                builder.WithOrigins(Configuration["chipinoClientUrl"]);
+            });
+
+            ConnectionString = Configuration["ConnectionStrings:MongoDbConnection"];
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

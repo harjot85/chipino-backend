@@ -13,12 +13,12 @@ namespace backend_website.Data.Repositories
         }
         public IEnumerable<Content> GetAllText()
         {
-            return _ctx.TextContent;
+            return _ctx.GetTextContent();
         }
 
         public Content GetTextById(int id)
         {
-            return (from c in _ctx.TextContent
+            return (from c in _ctx.GetTextContent()
                    where c.Id == id
                    select c).FirstOrDefault();
         }

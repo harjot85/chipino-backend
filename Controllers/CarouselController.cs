@@ -7,25 +7,19 @@ namespace backend_website.Controllers
     [Route("/api/[controller]")]
     [EnableCors("ChipinoOriginPolicy")]
     [ApiController]
-    public class MediaController : Controller
+    public class CarouselController : Controller
     {
+        //private readonly DummyDataService _localService;
         private readonly MongoDbService _service;
 
-        public MediaController(MongoDbService service)
+        public CarouselController(MongoDbService service)
         {
             _service = service;
         }
-
         [HttpGet]
-        public IActionResult GetAllMedia()
+        public IActionResult Index()
         {
-            return Ok(_service.GetAllMediaContent());
-        }
-
-        [HttpGet("id")]
-        public IActionResult GetImageById(int id)
-        {
-            return Ok(_service.GetMediaContentById(id));
+            return Ok(_service.GetCarouselContent());
         }
     }
 }

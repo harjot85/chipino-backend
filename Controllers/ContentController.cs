@@ -1,37 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using backend_website.Data;
-using backend_website.Models;
-using backend_website.Services;
+﻿using backend_website.Services;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend_website.Controllers
 {
     [Route("/api/[controller]")]
+    [EnableCors("ChipinoOriginPolicy")]
     [ApiController]
     public class ContentController : Controller
     {
-        private readonly DummyDataService _localService;
-               
-        public ContentController(DummyDataService service)
-        {
+        private readonly MongoDbService _service;
 
-            _localService = service;
+        public ContentController(MongoDbService service)
+        {
+            _service = service;
         }
 
         [HttpGet]
         public IActionResult GetAllContent()
         {
-            return Ok(_localService.GetAllTextContent());
+            return Ok(_service.GetAllTextContent());
         }
 
         [HttpGet]
         [Route("{id}")]
         public IActionResult GetTextContentById(int id)
         {
-            return Ok(_localService.GetTextContentById(id));
+            return Ok(_service.GetTextContentById(id));
         }
     }
 }
