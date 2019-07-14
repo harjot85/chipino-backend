@@ -10,6 +10,7 @@ namespace backend_website.Data
         IEnumerable<Media> GetMediaContent();
         IEnumerable<Footer> GetFooterContent();
         IEnumerable<Carousel> GetCarouselContent();
+        Task<List<Navbar>> GetNavbarItems();
         Task<bool> AddRepository(Models.GitHubRepository repository);
         Task<bool> RemoveRepository(int repositoryId);
     }
