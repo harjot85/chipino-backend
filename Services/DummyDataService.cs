@@ -55,5 +55,10 @@ namespace backend_website.Services
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<Navbar>> GetNavbarItems()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

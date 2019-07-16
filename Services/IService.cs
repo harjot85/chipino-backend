@@ -14,6 +14,7 @@ namespace backend_website.Services
         Media GetMediaContentById(int id);
         IEnumerable<Footer> GetFooterContent();
         IEnumerable<Carousel> GetCarouselContent();
+        Task<List<Navbar>> GetNavbarItems();
         Task<bool> AddGitRepository(GitHubRepository repository);
         Task<bool> RemoveGitRepository(int repositoryId);
     }

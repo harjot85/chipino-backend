@@ -68,5 +68,10 @@ namespace backend_website.Data
         {
             throw new NotImplementedException();
         }
+
+        public Task<List<Navbar>> GetNavbarItems()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

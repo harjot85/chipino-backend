@@ -76,5 +76,11 @@ namespace backend_website.Data
 
             return isRemoved;
         }
+
+        public async Task<List<Navbar>> GetNavbarItems()
+        {
+            var coll = _db.GetCollection<Navbar>("ChipinoNavbar");
+            return await coll.Find(new BsonDocument()).ToListAsync();
+        }
     }
 }

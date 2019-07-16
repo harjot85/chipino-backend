@@ -13,9 +13,6 @@ namespace backend_website.Controllers
     {
         private readonly MongoDbService _service;
 
-        private const string Added = "created";
-        private const string Removed = "deleted";
-
         public GitRepoController(MongoDbService service)
         {
             _service = service;
