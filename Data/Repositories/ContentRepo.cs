@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using backend_website.Models;
 
 namespace backend_website.Data.Repositories
@@ -11,14 +12,14 @@ namespace backend_website.Data.Repositories
         {
             _ctx = new DummyData();     
         }
-        public IEnumerable<Content> GetAllText()
+        public async Task<IEnumerable<Content>> GetAllText()
         {
-            return _ctx.GetTextContent();
+            return await _ctx.GetTextContent();
         }
 
-        public Content GetTextById(int id)
+        public async Task<Content> GetTextById(int id)
         {
-            return (from c in _ctx.GetTextContent()
+            return (from c in await _ctx.GetTextContent()
                    where c.Id == id
                    select c).FirstOrDefault();
         }

@@ -8,6 +8,6 @@ namespace backend_website.Data.Repositories
 {
     public interface IFooterRepo
     {
-        Footer GetFooter();
+        Task<IEnumerable<Footer>> GetFooter();
     }
 }

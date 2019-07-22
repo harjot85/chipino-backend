@@ -8,7 +8,7 @@ namespace backend_website.Data.Repositories
 {
     interface IContentRepo
     {
-        Content GetTextById(int id);
-        IEnumerable<Content> GetAllText();
+        Task<Content> GetTextById(int id);
+        Task<IEnumerable<Content>> GetAllText();
     }
 }

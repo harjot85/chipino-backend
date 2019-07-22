@@ -9,9 +9,9 @@ namespace backend_website.Data
     public class DummyData : IRepositoryData
     {
         
-        public IEnumerable<Content> GetTextContent()
+        public async Task<IEnumerable<Content>> GetTextContent()
         {
-            var textContent = new List<Content>()
+            var textContent =  new List<Content>()
             {
                 new Content(){ Id=0,PageData="Home Page Text", Description="This test is located on Home Page."},
                 new Content(){ Id=1,PageData="Portfolio Page Text", Description="This text is location on Portfolio Page."},
@@ -20,10 +20,10 @@ namespace backend_website.Data
                 new Content(){ Id=4,PageData="Support text Text", Description="This text is locaged here and tere."},
                 new Content(){ Id=5,PageData="Some other text on a Page", Description="This text will be on some other part of the page."},
             };
-            return textContent;
+            return await Task.Run(() => textContent);
         }
 
-        public IEnumerable<Media> GetMediaContent()
+        public async Task<IEnumerable<Media>> GetMediaContent()
         {
             byte[] imgOne = File.ReadAllBytes("./wwwroot/Images/1.png");
             byte[] imgTwo = File.ReadAllBytes("./wwwroot/Images/2.png");
@@ -33,10 +33,10 @@ namespace backend_website.Data
                 new Media(){ Id=10, FileContent=Convert.ToBase64String(imgOne), FileType="data:image/png;base64", FileDescription="This is Picture One with NO undelying text."  },
                 new Media(){ Id=11, FileContent=Convert.ToBase64String(imgTwo), FileType="data:image/png;base64", FileDescription="This is Picture Two with undelying text."  },
             };
-            return mediaContent;
+            return await Task.Run(() => mediaContent);
         }
 
-        public IEnumerable<Footer> GetFooterContent()
+        public async Task<IEnumerable<Footer>> GetFooterContent()
         {
             var footerContent = new List<Footer>()
             {
@@ -44,10 +44,10 @@ namespace backend_website.Data
                 new Footer(){ Id=502, IconClass="fab fa-medium-m", Height="36px",Width="36px", LinkTo="medium.com", HoverColor="#A9EAD2"  },
                 new Footer(){ Id=503, IconClass="fab fa-reddit-alien", Height="36px",Width="36px", LinkTo="reddit.com", HoverColor="#FF8B94"  },
             };
-            return footerContent;
+            return await Task.Run(() => footerContent);
         }
 
-        public IEnumerable<Carousel> GetCarouselContent()
+        public async Task<IEnumerable<Carousel>> GetCarouselContent()
         {
             byte[] imgTwo = File.ReadAllBytes("./wwwroot/Images/2.png");
 
@@ -55,7 +55,7 @@ namespace backend_website.Data
             {
                 new Carousel(){ Id=801, Image=Convert.ToBase64String(imgTwo), Heading="Dummy Heading", Description= "Dummy description", HeadingTextColor="yellow", DescTextColor="blue" },
             };
-            return carouselContent;
+            return await Task.Run(()=>carouselContent);
 
         }
 

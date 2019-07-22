@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using backend_website.Models;
 
 namespace backend_website.Data.Repositories
@@ -11,9 +12,9 @@ namespace backend_website.Data.Repositories
             _ctx = new DummyData();
         }
 
-        public IEnumerable<Carousel> GetCarousel()
+        public async Task<IEnumerable<Carousel>> GetCarousel()
         {
-            return _ctx.GetCarouselContent();
+            return await _ctx.GetCarouselContent();
         }
     }
 }

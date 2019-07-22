@@ -8,6 +8,6 @@ namespace backend_website.Data.Repositories
 {
     interface ICarouselRepo
     {
-         IEnumerable<Carousel> GetCarousel();
+         Task<IEnumerable<Carousel>> GetCarousel();
     }
 }

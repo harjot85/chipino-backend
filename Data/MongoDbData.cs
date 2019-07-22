@@ -19,28 +19,28 @@ namespace backend_website.Data
             _db = client.GetDatabase(dbName);
         }
 
-        public IEnumerable<Content> GetTextContent()
+        public async Task<IEnumerable<Content>> GetTextContent()
         {
             var coll = _db.GetCollection<Content>("ChipinoText");
-            return coll.Find(new BsonDocument()).ToList();
+            return await Task.Run(() => coll.Find(new BsonDocument()).ToEnumerable());
         }
 
-        public IEnumerable<Media> GetMediaContent()
+        public async Task<IEnumerable<Media>> GetMediaContent()
         {
             var coll = _db.GetCollection<Media>("ChipinoMedia");
-            return coll.Find(new BsonDocument()).ToList();
+            return await Task.Run(()=>coll.Find(new BsonDocument()).ToEnumerable());
         }
 
-        public IEnumerable<Footer> GetFooterContent()
+        public async Task<IEnumerable<Footer>> GetFooterContent()
         {
             var coll = _db.GetCollection<Footer>("ChipinoFooter");
-            return coll.Find(new BsonDocument()).ToList();
+            return await Task.Run(()=>coll.Find(new BsonDocument()).ToEnumerable());
         }
 
-        public IEnumerable<Carousel> GetCarouselContent()
+        public async Task<IEnumerable<Carousel>> GetCarouselContent()
         {
             var coll = _db.GetCollection<Carousel>("ChipinoCarousel");
-            return coll.Find(new BsonDocument()).ToList();
+            return await Task.Run(()=>coll.Find(new BsonDocument()).ToEnumerable());
         }
 
         public async Task<bool> AddRepository(Models.GitHubRepository repository)

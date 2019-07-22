@@ -8,12 +8,12 @@ namespace backend_website.Services
 {
     public interface IService
     {
-        IEnumerable<Content> GetAllTextContent();
-        Content GetTextContentById(int id);
-        IEnumerable<Media> GetAllMediaContent();
-        Media GetMediaContentById(int id);
-        IEnumerable<Footer> GetFooterContent();
-        IEnumerable<Carousel> GetCarouselContent();
+        Task<IEnumerable<Content>> GetAllTextContent();
+        Task<Content> GetTextContentById(int id);
+        Task<IEnumerable<Media>> GetAllMediaContent();
+        Task<Media> GetMediaContentById(int id);
+        Task<IEnumerable<Footer>> GetFooterContent();
+        Task<IEnumerable<Carousel>> GetCarouselContent();
         Task<List<Navbar>> GetNavbarItems();
         Task<bool> AddGitRepository(GitHubRepository repository);
         Task<bool> RemoveGitRepository(int repositoryId);

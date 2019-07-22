@@ -18,49 +18,51 @@ namespace backend_website.Services
             _ctx = new MongoDbData("chipinoDB");
         }
 
-        public IEnumerable<Content> GetAllTextContent()
+        public async Task<IEnumerable<Content>> GetAllTextContent()
         {
-            return _ctx.GetTextContent();
+            return await _ctx.GetTextContent();
         }
 
-        public Content GetTextContentById(int id)
+        public async Task<Content> GetTextContentById(int id)
         {
-            return _ctx.GetTextContent().Where(c => c.Id == id).FirstOrDefault();
+            var result = await _ctx.GetTextContent();
+            return result.Where(c => c.Id == id).FirstOrDefault();
         }
 
-        public IEnumerable<Media> GetAllMediaContent()
+        public async Task<IEnumerable<Media>> GetAllMediaContent()
         {
-            return _ctx.GetMediaContent();
+            return await _ctx.GetMediaContent();
         }
 
-        public Media GetMediaContentById(int id)
+        public async Task<Media> GetMediaContentById(int id)
         {
-            return _ctx.GetMediaContent().Where(m => m.Id == id).FirstOrDefault();
+            var result = await _ctx.GetMediaContent();
+            return result.Where(m => m.Id == id).FirstOrDefault();
         }
 
-        public IEnumerable<Footer> GetFooterContent()
+        public async Task<IEnumerable<Footer>> GetFooterContent()
         {
-            return _ctx.GetFooterContent();
+            return await _ctx.GetFooterContent();
         }
 
-        public Task<List<Navbar>> GetNavbarItems()
+        public async Task<List<Navbar>> GetNavbarItems()
         {
-            return _ctx.GetNavbarItems();
+            return await _ctx.GetNavbarItems();
         }
 
-        public IEnumerable<Carousel> GetCarouselContent()
+        public async Task<IEnumerable<Carousel>> GetCarouselContent()
         {
-            return _ctx.GetCarouselContent();
+            return await _ctx.GetCarouselContent();
         }
 
-        public Task<bool> AddGitRepository(Models.GitHubRepository repository)
+        public async Task<bool> AddGitRepository(Models.GitHubRepository repository)
         {
-            return _ctx.AddRepository(repository);
+            return await _ctx.AddRepository(repository);
         }
 
-        public Task<bool> RemoveGitRepository(int repositoryId)
+        public async Task<bool> RemoveGitRepository(int repositoryId)
         {
-            return _ctx.RemoveRepository(repositoryId);
+            return await _ctx.RemoveRepository(repositoryId);
         }
     }
 }

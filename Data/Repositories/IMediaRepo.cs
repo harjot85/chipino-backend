@@ -8,7 +8,7 @@ namespace backend_website.Data.Repositories
 {
     interface IMediaRepo
     {
-        Media GetImageById(int id);
-        IEnumerable<Media> GetAllMedia();
+        Task<Media> GetImageById(int id);
+        Task<IEnumerable<Media>> GetAllMedia();
     }
 }
