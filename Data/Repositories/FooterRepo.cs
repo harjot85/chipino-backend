@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using backend_website.Models;
 
 namespace backend_website.Data.Repositories
@@ -10,9 +12,9 @@ namespace backend_website.Data.Repositories
         {
             _ctx = new DummyData();
         }
-        public Footer GetFooter()
+        public async Task<IEnumerable<Footer>> GetFooter()
         {
-            return _ctx.GetFooterContent().FirstOrDefault();
+            return await _ctx.GetFooterContent();
         }
     }
 }
