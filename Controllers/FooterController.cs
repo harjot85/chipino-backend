@@ -1,6 +1,10 @@
-﻿using backend_website.Services;
+﻿using backend_website.Models;
+using backend_website.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace backend_website.Controllers
 {
@@ -17,9 +21,9 @@ namespace backend_website.Controllers
             _service = service;
         }
         [HttpGet]
-        public IActionResult Index()
-        {
-            return Ok(_service.GetFooterContent());
+        public async Task<IActionResult> Index()
+        {            
+            return Ok(await _service.GetFooterContent());
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using backend_website.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace backend_website.Controllers
 {
@@ -17,15 +18,15 @@ namespace backend_website.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllMedia()
+        public async Task<IActionResult> GetAllMedia()
         {
-            return Ok(_service.GetAllMediaContent());
+            return Ok(await _service.GetAllMediaContent());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetImageById(int id)
+        public async Task<IActionResult> GetImageById(int id)
         {
-            return Ok(_service.GetMediaContentById(id));
+            return Ok(await _service.GetMediaContentById(id));
         }
     }
 }

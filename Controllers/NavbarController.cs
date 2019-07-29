@@ -22,8 +22,7 @@ namespace backend_website.Controllers
         [HttpGet]
         public async Task<IActionResult> GetNavbarItems()
         {
-            var result = await _service.GetNavbarItems();
-            return Ok(result);
+            return Ok(await _service.GetNavbarItems());
         }
     }
 }
