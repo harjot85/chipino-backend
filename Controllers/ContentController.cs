@@ -1,6 +1,7 @@
 ﻿using backend_website.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace backend_website.Controllers
 {
@@ -17,15 +18,15 @@ namespace backend_website.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAllContent()
+        public async Task<IActionResult> GetAllContent()
         {
-            return Ok(_service.GetAllTextContent());
+            return Ok(await _service.GetAllTextContent());
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetTextContentById(int id)
+        public async Task<IActionResult> GetTextContentById(int id)
         {
-            return Ok(_service.GetTextContentById(id));
+            return Ok(await _service.GetTextContentById(id));
         }
     }
 }

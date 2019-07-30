@@ -1,6 +1,7 @@
 ﻿using backend_website.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace backend_website.Controllers
 {
@@ -17,9 +18,9 @@ namespace backend_website.Controllers
             _service = service;
         }
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return Ok(_service.GetCarouselContent());
+            return Ok(await _service.GetCarouselContent());
         }
     }
 }
