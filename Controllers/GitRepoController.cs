@@ -18,11 +18,25 @@ namespace backend_website.Controllers
             _service = service;
         }
 
+        [HttpGet]
+        [Route("getAllRepos")]
+        public async Task<IActionResult> GetAllRepositories()
+        {
+            return Ok(await _service.GetAllRepositories());
+        }
+
+        [HttpGet]
+        [Route("getFilteredRepos")]
+        public async Task<IActionResult> GetFilteredRepositories([FromQuery] FilterModel fm)
+        {
+            return Ok(await _service.GetFilteredRepositories(fm));
+        }
+
         [HttpPost]
         [Route("add")]
         public async Task<IActionResult> AddGitRepo([FromBody] dynamic repository)
         {
-            var newRepo = new GitHubRepository
+            var newRepo = new GitHubRepo
             {
                 Id = repository.repository.id,
                 Name = repository.repository.name,
@@ -36,7 +50,7 @@ namespace backend_website.Controllers
         [Route("remove")]
         public async Task<IActionResult> RemoveGitRepo([FromBody] dynamic repository)
         {
-            var removeRepo = new GitHubRepository
+            var removeRepo = new GitHubRepo
             {
                 Id = repository.repository.id
             };

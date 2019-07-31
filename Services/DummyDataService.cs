@@ -48,7 +48,12 @@ namespace backend_website.Services
             return await _ctx.GetCarouselContent();
         }
 
-        public Task<bool> AddGitRepository(Models.GitHubRepository repository)
+        public Task<List<Navbar>> GetNavbarItems()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> AddGitRepository(GitHubRepo repository)
         {
             throw new NotImplementedException();
         }
@@ -58,9 +63,14 @@ namespace backend_website.Services
             throw new NotImplementedException();
         }
 
-        public Task<List<Navbar>> GetNavbarItems()
+        public async Task<IEnumerable<GitHubRepo>> GetAllRepositories()
         {
-            throw new NotImplementedException();
+            return await _ctx.GetAllRepositories();
+        }
+
+        public async Task<IEnumerable<GitHubRepo>> GetFilteredRepositories(FilterModel fm)
+        {
+            return await _ctx.GetFilteredRepositories(fm);
         }
     }
 }

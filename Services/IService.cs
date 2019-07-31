@@ -15,7 +15,9 @@ namespace backend_website.Services
         Task<IEnumerable<Footer>> GetFooterContent();
         Task<IEnumerable<Carousel>> GetCarouselContent();
         Task<List<Navbar>> GetNavbarItems();
-        Task<bool> AddGitRepository(GitHubRepository repository);
+        Task<bool> AddGitRepository(GitHubRepo repository);
         Task<bool> RemoveGitRepository(int repositoryId);
+        Task<IEnumerable<GitHubRepo>> GetAllRepositories();
+        Task<IEnumerable<GitHubRepo>> GetFilteredRepositories(FilterModel fm);
     }
 }

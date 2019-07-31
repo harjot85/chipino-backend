@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace backend_website.Data
 {
@@ -59,7 +60,7 @@ namespace backend_website.Data
 
         }
 
-        public Task<bool> AddRepository(Models.GitHubRepository repository)
+        public Task<bool> AddRepository(GitHubRepo repository)
         {
             throw new NotImplementedException();
         }
@@ -72,6 +73,18 @@ namespace backend_website.Data
         public Task<List<Navbar>> GetNavbarItems()
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<IEnumerable<GitHubRepo>> GetAllRepositories()
+        {
+            var res = new GitHubRepository();
+            return await res.GetAllRepos();
+        }
+
+        public async Task<IEnumerable<GitHubRepo>> GetFilteredRepositories(FilterModel fm)
+        {
+            var res = await new GitHubRepository().GetAllRepos();
+            return res.Where(x=>x.Name.Equals(fm.Language));
         }
     }
 }

@@ -43,10 +43,16 @@ namespace backend_website.Data
             return await Task.Run(()=>coll.Find(new BsonDocument()).ToEnumerable());
         }
 
-        public async Task<bool> AddRepository(Models.GitHubRepository repository)
+        public async Task<List<Navbar>> GetNavbarItems()
+        {
+            var coll = _db.GetCollection<Navbar>("ChipinoNavbar");
+            return await coll.Find(new BsonDocument()).ToListAsync();
+        }
+
+        public async Task<bool> AddRepository(GitHubRepo repository)
         {
             bool result = false;
-            var newRepo = _db.GetCollection<Models.GitHubRepository>("ChipinoGitRepos");
+            var newRepo = _db.GetCollection<GitHubRepo>("ChipinoGitRepos");
             try
             {
                 await newRepo.InsertOneAsync(repository);
@@ -63,10 +69,10 @@ namespace backend_website.Data
         public async Task<bool> RemoveRepository(int repositoryId)
         {
             bool isRemoved = false;
-            var repo = _db.GetCollection<Models.GitHubRepository>("ChipinoGitRepos");
+            var repo = _db.GetCollection<GitHubRepo>("ChipinoGitRepos");
             try
             {
-                var response = await repo.DeleteOneAsync(Builders<Models.GitHubRepository>.Filter.Eq("_id", repositoryId));
+                var response = await repo.DeleteOneAsync(Builders<GitHubRepo>.Filter.Eq("_id", repositoryId));
                 isRemoved = response.IsAcknowledged;
             }
             catch (Exception ex)
@@ -77,10 +83,16 @@ namespace backend_website.Data
             return isRemoved;
         }
 
-        public async Task<List<Navbar>> GetNavbarItems()
+        public async Task<IEnumerable<GitHubRepo>> GetAllRepositories()
         {
-            var coll = _db.GetCollection<Navbar>("ChipinoNavbar");
-            return await coll.Find(new BsonDocument()).ToListAsync();
+            IMongoCollection<GitHubRepo> res = _db.GetCollection<GitHubRepo>("ChipinoGitRepos");
+            return await res.Find(_=> true).ToListAsync();
+        }
+
+        public async Task<IEnumerable<GitHubRepo>> GetFilteredRepositories(FilterModel fm)
+        {
+            IMongoCollection<GitHubRepo> res = _db.GetCollection<GitHubRepo>("ChipinoGitRepos");
+            return await res.Find(_ => _.Language.Equals(fm.Language)).ToListAsync();
         }
     }
 }

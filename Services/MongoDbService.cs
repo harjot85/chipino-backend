@@ -55,7 +55,7 @@ namespace backend_website.Services
             return await _ctx.GetCarouselContent();
         }
 
-        public async Task<bool> AddGitRepository(Models.GitHubRepository repository)
+        public async Task<bool> AddGitRepository(GitHubRepo repository)
         {
             return await _ctx.AddRepository(repository);
         }
@@ -63,6 +63,16 @@ namespace backend_website.Services
         public async Task<bool> RemoveGitRepository(int repositoryId)
         {
             return await _ctx.RemoveRepository(repositoryId);
+        }
+
+        public async Task<IEnumerable<GitHubRepo>> GetAllRepositories()
+        {
+            return await _ctx.GetAllRepositories();
+        }
+
+        public async Task<IEnumerable<GitHubRepo>> GetFilteredRepositories(FilterModel fm)
+        {
+            return await _ctx.GetFilteredRepositories(fm);
         }
     }
 }

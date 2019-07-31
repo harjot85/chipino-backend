@@ -11,7 +11,9 @@ namespace backend_website.Data
         Task<IEnumerable<Footer>> GetFooterContent();
         Task<IEnumerable<Carousel>> GetCarouselContent();
         Task<List<Navbar>> GetNavbarItems();
-        Task<bool> AddRepository(Models.GitHubRepository repository);
+        Task<bool> AddRepository(GitHubRepo repository);
         Task<bool> RemoveRepository(int repositoryId);
+        Task<IEnumerable<GitHubRepo>> GetAllRepositories();
+        Task<IEnumerable<GitHubRepo>> GetFilteredRepositories(FilterModel fm);
     }
 }
