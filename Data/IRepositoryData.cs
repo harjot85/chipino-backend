@@ -15,5 +15,6 @@ namespace backend_website.Data
         Task<bool> RemoveRepository(int repositoryId);
         Task<IEnumerable<GitHubRepo>> GetAllRepositories();
         Task<IEnumerable<GitHubRepo>> GetFilteredRepositories(FilterModel fm);
+        Task<IEnumerable<Configuration>> GetConfiguration();
     }
 }

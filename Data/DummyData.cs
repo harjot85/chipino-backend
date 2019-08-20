@@ -14,12 +14,12 @@ namespace backend_website.Data
         {
             var textContent =  new List<Content>()
             {
-                new Content(){ Id=0,PageData="Home Page Text", Description="This test is located on Home Page."},
-                new Content(){ Id=1,PageData="Portfolio Page Text", Description="This text is location on Portfolio Page."},
-                new Content(){ Id=2,PageData="Contact Us Page Text", Description="This text is located on Contact Us page."},
-                new Content(){ Id=3,PageData="About Chipino Page Text", Description="This text in on About Chipino page."},
-                new Content(){ Id=4,PageData="Support text Text", Description="This text is locaged here and tere."},
-                new Content(){ Id=5,PageData="Some other text on a Page", Description="This text will be on some other part of the page."},
+                new Content(){ Id=0,DisplayText="Home Page Text", Description="This test is located on Home Page."},
+                new Content(){ Id=1,DisplayText="Portfolio Page Text", Description="This text is location on Portfolio Page."},
+                new Content(){ Id=2,DisplayText="Contact Us Page Text", Description="This text is located on Contact Us page."},
+                new Content(){ Id=3,DisplayText="About Chipino Page Text", Description="This text in on About Chipino page."},
+                new Content(){ Id=4,DisplayText="Support text Text", Description="This text is locaged here and tere."},
+                new Content(){ Id=5,DisplayText="Some other text on a Page", Description="This text will be on some other part of the page."},
             };
             return await Task.Run(() => textContent);
         }
@@ -85,6 +85,11 @@ namespace backend_website.Data
         {
             var res = await new GitHubRepository().GetAllRepos();
             return res.Where(x=>x.Name.Equals(fm.Language));
+        }
+
+        public Task<IEnumerable<Configuration>> GetConfiguration()
+        {
+            throw new NotImplementedException();
         }
     }
 }

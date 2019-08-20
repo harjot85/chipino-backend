@@ -94,5 +94,11 @@ namespace backend_website.Data
             IMongoCollection<GitHubRepo> res = _db.GetCollection<GitHubRepo>("ChipinoGitRepos");
             return await res.Find(_ => _.Language.Equals(fm.Language)).ToListAsync();
         }
+
+        public async Task<IEnumerable<Configuration>> GetConfiguration()
+        {
+            var coll = _db.GetCollection<Configuration>("SharedPropertiesConfiguration");
+            return await Task.Run(() => coll.Find(new BsonDocument()).ToEnumerable());
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using backend_website.Data.Repositories;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Driver;
@@ -73,6 +71,12 @@ namespace backend_website.Services
         public async Task<IEnumerable<GitHubRepo>> GetFilteredRepositories(FilterModel fm)
         {
             return await _ctx.GetFilteredRepositories(fm);
+        }
+
+        public async Task<IEnumerable<Configuration>> GetConfiguration()
+        {
+            return await _ctx.GetConfiguration();
+            
         }
     }
 }

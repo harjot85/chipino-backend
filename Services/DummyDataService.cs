@@ -72,5 +72,10 @@ namespace backend_website.Services
         {
             return await _ctx.GetFilteredRepositories(fm);
         }
+
+        public Task<IEnumerable<Configuration>> GetConfiguration()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
