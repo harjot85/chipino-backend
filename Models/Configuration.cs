@@ -14,10 +14,11 @@ namespace backend_website.Models
         public string SubHeadTitleFontColor { get; set; }
         public string ContentFontSize { get; set; }
         public string ContentFontColor { get; set; }
-        public string ProjectLinkFontSize { get; set; }
-        public string ProjectLinkFontColor { get; set; }
+        public string ProjectLinkButtonClass { get; set; }
         public string BadgeColor { get; set; }
         public string ButtonClass { get; set; }
+        public string FooterCopyrightFontSize { get; set; }
+        public string FooterCopyrightFontColor { get; set; }
         public object Navbar { get; set; }
     }
 }
